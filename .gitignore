@@ -1,0 +1,3 @@
+venv/
+cars_app_api/car_info_api/__pycache__/
+cars_app_api/cars_app_api/__pycache__/
