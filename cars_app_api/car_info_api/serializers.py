@@ -11,4 +11,4 @@ class CarsBrandsSerializer(serializers.ModelSerializer):
 class CarsModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Model
-        field = '__all__'
+        fields = '__all__' #['model_id', 'brand_id', 'segment_id', 'model_name']

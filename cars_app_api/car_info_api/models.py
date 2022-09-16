@@ -80,8 +80,8 @@ class Brands(models.Model):
 
 
 class CarImage(models.Model):
-    car_image_id = models.AutoField(unique=True, db_column='car_image_id' ,primary_key=True)
-    version = models.ForeignKey('Version', models.DO_NOTHING, blank=True, null=True)
+    car_image_id = models.AutoField(unique=True, db_column='car_image_id', primary_key=True)
+    version = models.ForeignKey('Version', on_delete=models.CASCADE, blank=True, null=True)
     car_image_1 = models.CharField(max_length=700, blank=True, null=True)
     car_image_2 = models.CharField(max_length=700, blank=True, null=True)
     car_image_3 = models.CharField(max_length=700, blank=True, null=True)
@@ -138,8 +138,8 @@ class DjangoSession(models.Model):
 
 class Model(models.Model):
     model_id = models.AutoField(unique=True, db_column='model_id',primary_key=True)
-    brands = models.ForeignKey(Brands, models.DO_NOTHING, blank=True, null=True)
-    segment = models.ForeignKey('Segment', models.DO_NOTHING, blank=True, null=True)
+    brand = models.ForeignKey(Brands, on_delete=models.CASCADE, blank=True, null=True)
+    segment = models.ForeignKey('Segment', on_delete=models.CASCADE, blank=True, null=True)
     model_name = models.CharField(max_length=70, blank=True, null=True)
 
     class Meta:
