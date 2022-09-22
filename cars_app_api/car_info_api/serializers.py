@@ -6,7 +6,7 @@ from .models import *
 class CarsBrandsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brands
-        fields = ['brand_id', 'brand_name']
+        fields = '__all__'
 
 class CarsModelSerializer(serializers.ModelSerializer):
     class Meta:
