@@ -22,8 +22,7 @@ def cars_brand_serializer(request):
 @api_view(['GET', 'POST'])
 def cars_models_serializer(request, brand_id):
     try:
-        # car_brand = Brands.objects.get(pk=brand_id)
-        brand_models = Model.objects.filter(brand_id=brand_id)
+        brand_models = Model.objects.filter(pk=brand_id)
     except Model.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     
