@@ -1,3 +1,4 @@
+from unittest.util import _MAX_LENGTH
 from django.db import models
 
 
@@ -136,26 +137,26 @@ class DjangoSession(models.Model):
         managed = False
         db_table = 'django_session'
 
-
-class Model(models.Model):
-    model_id = models.AutoField(unique=True, db_column='model_id',primary_key=True)
-    brand = models.ForeignKey(Brands, on_delete=models.CASCADE, blank=True, null=True)
-    segment = models.ForeignKey('Segment', on_delete=models.CASCADE, blank=True, null=True)
-    model_name = models.CharField(max_length=70, blank=True, null=True)
-    model_image = models.CharField(max_length=700, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'model'
-
-
 class Segment(models.Model):
-    segment_id = models.AutoField(unique=True, db_column='segmnet_id', primary_key=True)
+    segment_id = models.AutoField(unique=True, db_column='segment_id', primary_key=True)
     segment_name = models.CharField(max_length=70, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'segment'
+
+class Model(models.Model):
+    model_id = models.AutoField(unique=True, db_column='model_id',primary_key=True)
+    brand = models.ForeignKey(Brands, on_delete=models.CASCADE, blank=True, null=True)
+    segment = models.ForeignKey(Segment, on_delete=models.CASCADE, blank=True, null=True)
+    model_name = models.CharField(max_length=70, blank=True, null=True)
+    model_image_1 = models.CharField(max_length=700, blank=True, null=True)
+    model_image_2 = models.CharField(max_length=700, blank=True, null=True)
+    model_image_3 = models.CharField(max_length=700, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'model'
 
 
 class Version(models.Model):

@@ -15,9 +15,16 @@ class CarsModelSerializer(serializers.ModelSerializer):
         model = Model
         fields = '__all__'
 
-# class CarsModelSerializer(serializers.Serializer):
-#     model_id = serializers.IntegerField(read_only=True)
-#     model_name = serializers.CharField(allow_blank=True, allow_null=True, max_length=70, required=False)
-#     model_image = serializers.CharField(allow_blank=True, allow_null=True, max_length=700, required=False)
-#     brand = serializers.PrimaryKeyRelatedField(allow_null=True, queryset=Brands.objects.all(), required=False)
-#     segment = serializers.PrimaryKeyRelatedField(allow_null=True, queryset=Segment.objects.all(), required=False)
+class UnitModelSerializer(serializers.Serializer):
+    model_id = serializers.IntegerField(read_only=False)
+    brand_name = serializers.CharField(allow_blank=True, allow_null=True, max_length=70, required=False)
+    segment_name = serializers.CharField(allow_blank=True, allow_null=True, max_length=70, required=False)
+    model_name = serializers.CharField(allow_blank=True, allow_null=True, max_length=70, required=False)
+    model_image_1 = serializers.CharField(allow_blank=True, allow_null=True, max_length=700, required=False)
+    model_image_2 = serializers.CharField(allow_blank=True, allow_null=True, max_length=700, required=False)
+    model_image_3 = serializers.CharField(allow_blank=True, allow_null=True, max_length=700, required=False)
+
+class ModelVersionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Version
+        fields = '__all__'
