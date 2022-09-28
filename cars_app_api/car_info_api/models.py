@@ -138,7 +138,7 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 class Segment(models.Model):
-    segment_id = models.AutoField(unique=True, db_column='segmnet_id', primary_key=True)
+    segment_id = models.AutoField(unique=True, db_column='segment_id', primary_key=True)
     segment_name = models.CharField(max_length=70, blank=True, null=True)
 
     class Meta:

@@ -23,3 +23,8 @@ class UnitModelSerializer(serializers.Serializer):
     model_image_1 = serializers.CharField(allow_blank=True, allow_null=True, max_length=700, required=False)
     model_image_2 = serializers.CharField(allow_blank=True, allow_null=True, max_length=700, required=False)
     model_image_3 = serializers.CharField(allow_blank=True, allow_null=True, max_length=700, required=False)
+
+class ModelVersionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Version
+        fields = '__all__'
