@@ -1,5 +1,3 @@
-from dataclasses import field
-from pyexpat import model
 from rest_framework import serializers
 from .models import *
 from .views import *
@@ -10,9 +8,18 @@ class CarsBrandsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CarsModelSerializer(serializers.ModelSerializer):
-    # brand_name = CarsBrandsSerializer(read_only=True)
     class Meta:
         model = Model
+        fields = '__all__'
+
+class ModelVersionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Version
+        fields = '__all__'
+
+class ImagesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
         fields = '__all__'
 
 class UnitModelSerializer(serializers.Serializer):
@@ -20,11 +27,14 @@ class UnitModelSerializer(serializers.Serializer):
     brand_name = serializers.CharField(allow_blank=True, allow_null=True, max_length=70, required=False)
     segment_name = serializers.CharField(allow_blank=True, allow_null=True, max_length=70, required=False)
     model_name = serializers.CharField(allow_blank=True, allow_null=True, max_length=70, required=False)
-    model_image_1 = serializers.CharField(allow_blank=True, allow_null=True, max_length=700, required=False)
-    model_image_2 = serializers.CharField(allow_blank=True, allow_null=True, max_length=700, required=False)
-    model_image_3 = serializers.CharField(allow_blank=True, allow_null=True, max_length=700, required=False)
+    carrousel_images = ImagesSerializer(many=True)
 
-class ModelVersionSerializer(serializers.ModelSerializer):
+
+class ModelVersionsSerializer(serializers.ModelSerializer):
+    carrousel_images = ImagesSerializer(many=True)
     class Meta:
         model = Version
-        fields = '__all__'
+        filelds = ['__all__', 'carrousel_images']
+
+class MdoelUnitVersionSerializer():
+    pass
