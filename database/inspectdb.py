@@ -1,4 +1,10 @@
-
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#   * Rearrange models' order
+#   * Make sure each model has one field with primary_key=True
+#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
+#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+# Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
 
@@ -72,13 +78,25 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Brands(models.Model):
-    brand_id = models.AutoField(unique=True, db_column='brand_id', primary_key=True)
+    brand_id = models.AutoField(unique=True)
     brand_name = models.CharField(max_length=70, blank=True, null=True)
     brand_image = models.CharField(max_length=700, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'brands'
+
+
+class CarImage(models.Model):
+    car_image_id = models.AutoField(unique=True)
+    version = models.ForeignKey('Version', models.DO_NOTHING, blank=True, null=True)
+    car_image_1 = models.CharField(max_length=700, blank=True, null=True)
+    car_image_2 = models.CharField(max_length=700, blank=True, null=True)
+    car_image_3 = models.CharField(max_length=700, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'car_image'
 
 
 class DjangoAdminLog(models.Model):
@@ -125,34 +143,29 @@ class DjangoSession(models.Model):
         managed = False
         db_table = 'django_session'
 
-class Segment(models.Model):
-    segment_id = models.AutoField(unique=True, db_column='segment_id', primary_key=True)
-    segment_name = models.CharField(max_length=70, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'segment'
 
 class Image(models.Model):
-    image_id = models.AutoField(unique=True, db_column='image_id', primary_key=True)
+    image_id = models.AutoField(unique=True)
     image_url = models.CharField(max_length=700, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'image'
 
+
 class Model(models.Model):
-    model_id = models.AutoField(unique=True, db_column='model_id',primary_key=True)
-    brand = models.ForeignKey(Brands, on_delete=models.CASCADE, blank=True, null=True)
-    segment = models.ForeignKey(Segment, on_delete=models.CASCADE, blank=True, null=True)
+    model_id = models.AutoField(unique=True)
+    brand = models.ForeignKey(Brands, models.DO_NOTHING, blank=True, null=True)
+    segment = models.ForeignKey('Segment', models.DO_NOTHING, blank=True, null=True)
     model_name = models.CharField(max_length=70, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'model'
 
+
 class ModelImage(models.Model):
-    model_image_id = models.AutoField(unique=True, db_column='model_image_id', primary_key=True)
+    model_image_id = models.AutoField(unique=True)
     model = models.ForeignKey(Model, models.DO_NOTHING, blank=True, null=True)
     image = models.ForeignKey(Image, models.DO_NOTHING, blank=True, null=True)
 
@@ -161,10 +174,20 @@ class ModelImage(models.Model):
         db_table = 'model_image'
 
 
+class Segment(models.Model):
+    segment_id = models.AutoField(unique=True)
+    segment_name = models.CharField(max_length=70, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'segment'
+
+
 class Version(models.Model):
-    version_id = models.AutoField(unique=True, db_column='version_id', primary_key=True)
+    version_id = models.AutoField(unique=True)
     model = models.ForeignKey(Model, models.DO_NOTHING, blank=True, null=True)
-    version_name = models.CharField(max_length=70, blank=True, null=True)
+    version_name = models.CharField(max_length=80, blank=True, null=True)
+    price = models.FloatField(blank=True, null=True)
     year = models.TextField(blank=True, null=True)  # This field type is a guess.
     power_hp = models.IntegerField(blank=True, null=True)
     torque = models.IntegerField(blank=True, null=True)
@@ -192,8 +215,9 @@ class Version(models.Model):
         managed = False
         db_table = 'version'
 
+
 class VersionImage(models.Model):
-    version_image_id = models.AutoField(unique=True, db_column='version_image_id', primary_key=True)
+    version_image_id = models.AutoField(unique=True)
     version = models.ForeignKey(Version, models.DO_NOTHING, blank=True, null=True)
     image = models.ForeignKey(Image, models.DO_NOTHING, blank=True, null=True)
 

@@ -1,0 +1,470 @@
+-- MySQL dump 10.13  Distrib 8.0.30, for Linux (x86_64)
+--
+-- Host: localhost    Database: cars_app_db
+-- ------------------------------------------------------
+-- Server version	8.0.30-0ubuntu0.20.04.2
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `auth_group`
+--
+
+DROP TABLE IF EXISTS `auth_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_group` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group`
+--
+
+LOCK TABLES `auth_group` WRITE;
+/*!40000 ALTER TABLE `auth_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_group_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_group_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_group_permissions` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `group_id` int NOT NULL,
+  `permission_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` (`group_id`,`permission_id`),
+  KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group_permissions`
+--
+
+LOCK TABLES `auth_group_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_group_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_permission`
+--
+
+DROP TABLE IF EXISTS `auth_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_permission` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `content_type_id` int NOT NULL,
+  `codename` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
+  CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_permission`
+--
+
+LOCK TABLES `auth_permission` WRITE;
+/*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
+INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can view log entry',1,'view_logentry'),(5,'Can add permission',2,'add_permission'),(6,'Can change permission',2,'change_permission'),(7,'Can delete permission',2,'delete_permission'),(8,'Can view permission',2,'view_permission'),(9,'Can add group',3,'add_group'),(10,'Can change group',3,'change_group'),(11,'Can delete group',3,'delete_group'),(12,'Can view group',3,'view_group'),(13,'Can add user',4,'add_user'),(14,'Can change user',4,'change_user'),(15,'Can delete user',4,'delete_user'),(16,'Can view user',4,'view_user'),(17,'Can add content type',5,'add_contenttype'),(18,'Can change content type',5,'change_contenttype'),(19,'Can delete content type',5,'delete_contenttype'),(20,'Can view content type',5,'view_contenttype'),(21,'Can add session',6,'add_session'),(22,'Can change session',6,'change_session'),(23,'Can delete session',6,'delete_session'),(24,'Can view session',6,'view_session'),(25,'Can add auth group',7,'add_authgroup'),(26,'Can change auth group',7,'change_authgroup'),(27,'Can delete auth group',7,'delete_authgroup'),(28,'Can view auth group',7,'view_authgroup'),(29,'Can add auth group permissions',8,'add_authgrouppermissions'),(30,'Can change auth group permissions',8,'change_authgrouppermissions'),(31,'Can delete auth group permissions',8,'delete_authgrouppermissions'),(32,'Can view auth group permissions',8,'view_authgrouppermissions'),(33,'Can add auth permission',9,'add_authpermission'),(34,'Can change auth permission',9,'change_authpermission'),(35,'Can delete auth permission',9,'delete_authpermission'),(36,'Can view auth permission',9,'view_authpermission'),(37,'Can add auth user',10,'add_authuser'),(38,'Can change auth user',10,'change_authuser'),(39,'Can delete auth user',10,'delete_authuser'),(40,'Can view auth user',10,'view_authuser'),(41,'Can add auth user groups',11,'add_authusergroups'),(42,'Can change auth user groups',11,'change_authusergroups'),(43,'Can delete auth user groups',11,'delete_authusergroups'),(44,'Can view auth user groups',11,'view_authusergroups'),(45,'Can add auth user user permissions',12,'add_authuseruserpermissions'),(46,'Can change auth user user permissions',12,'change_authuseruserpermissions'),(47,'Can delete auth user user permissions',12,'delete_authuseruserpermissions'),(48,'Can view auth user user permissions',12,'view_authuseruserpermissions'),(49,'Can add brand',13,'add_brand'),(50,'Can change brand',13,'change_brand'),(51,'Can delete brand',13,'delete_brand'),(52,'Can view brand',13,'view_brand'),(53,'Can add car image',14,'add_carimage'),(54,'Can change car image',14,'change_carimage'),(55,'Can delete car image',14,'delete_carimage'),(56,'Can view car image',14,'view_carimage'),(57,'Can add django admin log',15,'add_djangoadminlog'),(58,'Can change django admin log',15,'change_djangoadminlog'),(59,'Can delete django admin log',15,'delete_djangoadminlog'),(60,'Can view django admin log',15,'view_djangoadminlog'),(61,'Can add django content type',16,'add_djangocontenttype'),(62,'Can change django content type',16,'change_djangocontenttype'),(63,'Can delete django content type',16,'delete_djangocontenttype'),(64,'Can view django content type',16,'view_djangocontenttype'),(65,'Can add django migrations',17,'add_djangomigrations'),(66,'Can change django migrations',17,'change_djangomigrations'),(67,'Can delete django migrations',17,'delete_djangomigrations'),(68,'Can view django migrations',17,'view_djangomigrations'),(69,'Can add django session',18,'add_djangosession'),(70,'Can change django session',18,'change_djangosession'),(71,'Can delete django session',18,'delete_djangosession'),(72,'Can view django session',18,'view_djangosession'),(73,'Can add model',19,'add_model'),(74,'Can change model',19,'change_model'),(75,'Can delete model',19,'delete_model'),(76,'Can view model',19,'view_model'),(77,'Can add segment',20,'add_segment'),(78,'Can change segment',20,'change_segment'),(79,'Can delete segment',20,'delete_segment'),(80,'Can view segment',20,'view_segment'),(81,'Can add version',21,'add_version'),(82,'Can change version',21,'change_version'),(83,'Can delete version',21,'delete_version'),(84,'Can view version',21,'view_version'),(85,'Can add brands',22,'add_brands'),(86,'Can change brands',22,'change_brands'),(87,'Can delete brands',22,'delete_brands'),(88,'Can view brands',22,'view_brands');
+/*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user`
+--
+
+DROP TABLE IF EXISTS `auth_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `password` varchar(128) NOT NULL,
+  `last_login` datetime(6) DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(150) NOT NULL,
+  `first_name` varchar(150) NOT NULL,
+  `last_name` varchar(150) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user`
+--
+
+LOCK TABLES `auth_user` WRITE;
+/*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$390000$h5VpkbDxcGaI9Dy49IaKoR$Cja4qXugcaR8niArMlrsZDMso3EBM7uVF8KouIZkQNc=','2022-09-28 07:28:36.617886',1,'djangoadmin','','','agustin.vergara.ruiz@gmail.com',1,1,'2022-09-12 18:40:06.420163');
+/*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_groups`
+--
+
+DROP TABLE IF EXISTS `auth_user_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_user_groups` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `group_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_groups_user_id_group_id_94350c0c_uniq` (`user_id`,`group_id`),
+  KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`),
+  CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_groups`
+--
+
+LOCK TABLES `auth_user_groups` WRITE;
+/*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_user_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_user_user_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_user_user_permissions` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `permission_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` (`user_id`,`permission_id`),
+  KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_user_permissions`
+--
+
+LOCK TABLES `auth_user_user_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_user_user_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_user_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `brands`
+--
+
+DROP TABLE IF EXISTS `brands`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `brands` (
+  `brand_id` int NOT NULL AUTO_INCREMENT,
+  `brand_name` varchar(70) DEFAULT NULL,
+  `brand_image` varchar(700) DEFAULT NULL,
+  UNIQUE KEY `brand_id` (`brand_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `brands`
+--
+
+LOCK TABLES `brands` WRITE;
+/*!40000 ALTER TABLE `brands` DISABLE KEYS */;
+INSERT INTO `brands` VALUES (1,'toyota','https://assets.stickpng.com/images/580b57fcd9996e24bc43c4a3.png'),(2,'nissan','https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Nissan_logo.png/700px-Nissan_logo.png?20200715092107'),(3,'honda','https://desbloqueos881939774.files.wordpress.com/2021/02/hondaco.png'),(4,'mazda','https://assets.stickpng.com/images/580b57fcd9996e24bc43c491.png'),(5,'mitsubishi','https://i.pinimg.com/originals/9c/1a/2f/9c1a2f4130f7a5073f89b9a6305237bc.png'),(6,'hyundai','https://png.monster/wp-content/uploads/2021/03/pngwing.com-6-df089539.png');
+/*!40000 ALTER TABLE `brands` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `car_image`
+--
+
+DROP TABLE IF EXISTS `car_image`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `car_image` (
+  `car_image_id` int NOT NULL AUTO_INCREMENT,
+  `version_id` int DEFAULT NULL,
+  `car_image_1` varchar(700) DEFAULT NULL,
+  `car_image_2` varchar(700) DEFAULT NULL,
+  `car_image_3` varchar(700) DEFAULT NULL,
+  UNIQUE KEY `car_image_id` (`car_image_id`),
+  KEY `version_id` (`version_id`),
+  CONSTRAINT `car_image_ibfk_1` FOREIGN KEY (`version_id`) REFERENCES `version` (`version_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `car_image`
+--
+
+LOCK TABLES `car_image` WRITE;
+/*!40000 ALTER TABLE `car_image` DISABLE KEYS */;
+/*!40000 ALTER TABLE `car_image` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_admin_log`
+--
+
+DROP TABLE IF EXISTS `django_admin_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `django_admin_log` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `action_time` datetime(6) NOT NULL,
+  `object_id` longtext,
+  `object_repr` varchar(200) NOT NULL,
+  `action_flag` smallint unsigned NOT NULL,
+  `change_message` longtext NOT NULL,
+  `content_type_id` int DEFAULT NULL,
+  `user_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `django_admin_log_content_type_id_c4bce8eb_fk_django_co` (`content_type_id`),
+  KEY `django_admin_log_user_id_c564eba6_fk_auth_user_id` (`user_id`),
+  CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `django_admin_log_chk_1` CHECK ((`action_flag` >= 0))
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_admin_log`
+--
+
+LOCK TABLES `django_admin_log` WRITE;
+/*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
+INSERT INTO `django_admin_log` VALUES (1,'2022-09-28 07:32:45.513499','1','Version object (1)',1,'[{\"added\": {}}]',21,1),(2,'2022-09-28 07:34:07.209315','2','Version object (2)',1,'[{\"added\": {}}]',21,1);
+/*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_content_type`
+--
+
+DROP TABLE IF EXISTS `django_content_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `django_content_type` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `app_label` varchar(100) NOT NULL,
+  `model` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_content_type`
+--
+
+LOCK TABLES `django_content_type` WRITE;
+/*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
+INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(3,'auth','group'),(2,'auth','permission'),(4,'auth','user'),(7,'car_info_api','authgroup'),(8,'car_info_api','authgrouppermissions'),(9,'car_info_api','authpermission'),(10,'car_info_api','authuser'),(11,'car_info_api','authusergroups'),(12,'car_info_api','authuseruserpermissions'),(13,'car_info_api','brand'),(22,'car_info_api','brands'),(14,'car_info_api','carimage'),(15,'car_info_api','djangoadminlog'),(16,'car_info_api','djangocontenttype'),(17,'car_info_api','djangomigrations'),(18,'car_info_api','djangosession'),(19,'car_info_api','model'),(20,'car_info_api','segment'),(21,'car_info_api','version'),(5,'contenttypes','contenttype'),(6,'sessions','session');
+/*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_migrations`
+--
+
+DROP TABLE IF EXISTS `django_migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `django_migrations` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `app` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `applied` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_migrations`
+--
+
+LOCK TABLES `django_migrations` WRITE;
+/*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2022-09-09 22:25:54.216574'),(2,'auth','0001_initial','2022-09-09 22:25:55.723064'),(3,'admin','0001_initial','2022-09-09 22:25:56.036314'),(4,'admin','0002_logentry_remove_auto_add','2022-09-09 22:25:56.064038'),(5,'admin','0003_logentry_add_action_flag_choices','2022-09-09 22:25:56.089899'),(6,'contenttypes','0002_remove_content_type_name','2022-09-09 22:25:56.277340'),(7,'auth','0002_alter_permission_name_max_length','2022-09-09 22:25:56.420336'),(8,'auth','0003_alter_user_email_max_length','2022-09-09 22:25:56.487926'),(9,'auth','0004_alter_user_username_opts','2022-09-09 22:25:56.505509'),(10,'auth','0005_alter_user_last_login_null','2022-09-09 22:25:56.622995'),(11,'auth','0006_require_contenttypes_0002','2022-09-09 22:25:56.628529'),(12,'auth','0007_alter_validators_add_error_messages','2022-09-09 22:25:56.640903'),(13,'auth','0008_alter_user_username_max_length','2022-09-09 22:25:56.762743'),(14,'auth','0009_alter_user_last_name_max_length','2022-09-09 22:25:56.941562'),(15,'auth','0010_alter_group_name_max_length','2022-09-09 22:25:57.012018'),(16,'auth','0011_update_proxy_permissions','2022-09-09 22:25:57.041852'),(17,'auth','0012_alter_user_first_name_max_length','2022-09-09 22:25:57.186677'),(18,'sessions','0001_initial','2022-09-09 22:25:57.308626'),(19,'car_info_api','0001_initial','2022-09-14 20:48:23.073701'),(20,'car_info_api','0002_brands_delete_brand','2022-09-16 19:20:59.646298');
+/*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_session`
+--
+
+DROP TABLE IF EXISTS `django_session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `django_session` (
+  `session_key` varchar(40) NOT NULL,
+  `session_data` longtext NOT NULL,
+  `expire_date` datetime(6) NOT NULL,
+  PRIMARY KEY (`session_key`),
+  KEY `django_session_expire_date_a5c62663` (`expire_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_session`
+--
+
+LOCK TABLES `django_session` WRITE;
+/*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+INSERT INTO `django_session` VALUES ('m7ch125z8idnl05ga8i5mhfgg3bqul3s','.eJxVjL0OAiEQhN-F2hBYRMDS_p6BLHusnBpI7qcyvrtccoU2k8l8M_MWEbe1xG3Jc5xGcRVanH6zhPTMdQfjA-u9SWp1nack94o86CKHNubX7ej-HRRcSl8jk01OMTiTLKlgFAcdWHtiVJysAwpwyeqsuoB33XM22nkCMJhAfL7lrDeY:1odRUi:Lkwzv6BVj7oMaNnfM0in1DoVbyZGA_JFiuK5n9t2zeI','2022-10-12 07:28:36.624623');
+/*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `model`
+--
+
+DROP TABLE IF EXISTS `model`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `model` (
+  `model_id` int NOT NULL AUTO_INCREMENT,
+  `brand_id` int DEFAULT NULL,
+  `segment_id` int DEFAULT NULL,
+  `model_name` varchar(70) DEFAULT NULL,
+  `model_image_1` varchar(700) DEFAULT NULL,
+  `model_image_2` varchar(700) DEFAULT NULL,
+  `model_image_3` varchar(700) DEFAULT NULL,
+  UNIQUE KEY `model_id` (`model_id`),
+  KEY `segment_id` (`segment_id`),
+  KEY `brand_id` (`brand_id`),
+  CONSTRAINT `model_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `segment` (`segment_id`),
+  CONSTRAINT `model_ibfk_2` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`brand_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `model`
+--
+
+LOCK TABLES `model` WRITE;
+/*!40000 ALTER TABLE `model` DISABLE KEYS */;
+INSERT INTO `model` VALUES (1,1,1,'prado','https://cars-app-images.sfo3.digitaloceanspaces.com/kisspng-toyota-land-cruiser-prado-2017-toyota-land-cruiser-5af8af3a827903.8199045115262472265344.png',NULL,NULL),(2,1,1,'rav 4',NULL,NULL,NULL),(3,1,1,'rush',NULL,NULL,NULL),(4,1,6,'hylux',NULL,NULL,NULL),(5,2,2,'sentra',NULL,NULL,NULL),(6,2,6,'frontier',NULL,NULL,NULL),(7,2,1,'kicks',NULL,NULL,NULL),(8,2,1,'xtrail',NULL,NULL,NULL),(9,2,2,'versa',NULL,NULL,NULL),(10,3,2,'civic',NULL,NULL,NULL),(11,3,2,'accord',NULL,NULL,NULL),(12,3,1,'crv',NULL,NULL,NULL),(13,3,1,'hrv',NULL,NULL,NULL),(14,3,1,'pilot',NULL,NULL,NULL),(15,3,8,'odyssey',NULL,NULL,NULL),(16,3,6,'ridgeline',NULL,NULL,NULL),(17,4,2,'mazda3',NULL,NULL,NULL),(18,4,3,'mazda3 HB',NULL,NULL,NULL),(19,4,1,'cx3',NULL,NULL,NULL),(20,4,4,'cx30',NULL,NULL,NULL),(21,4,1,'cx5',NULL,NULL,NULL),(22,4,1,'cx9',NULL,NULL,NULL),(23,4,6,'bt50',NULL,NULL,NULL),(24,5,2,'mirage g4',NULL,NULL,NULL),(25,5,1,'ASX',NULL,NULL,NULL),(26,5,4,'eclipse cross',NULL,NULL,NULL),(27,5,1,'outlander',NULL,NULL,NULL),(28,5,1,'montero',NULL,NULL,NULL),(29,5,6,'L200',NULL,NULL,NULL),(30,6,3,'atos',NULL,NULL,NULL),(31,6,3,'i10',NULL,NULL,NULL),(32,6,2,'accent',NULL,NULL,NULL),(33,6,4,'creta',NULL,NULL,NULL),(34,6,1,'tucson',NULL,NULL,NULL),(35,6,1,'santa fe',NULL,NULL,NULL);
+/*!40000 ALTER TABLE `model` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `segment`
+--
+
+DROP TABLE IF EXISTS `segment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `segment` (
+  `segment_id` int NOT NULL AUTO_INCREMENT,
+  `segment_name` varchar(70) DEFAULT NULL,
+  UNIQUE KEY `segment_id` (`segment_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `segment`
+--
+
+LOCK TABLES `segment` WRITE;
+/*!40000 ALTER TABLE `segment` DISABLE KEYS */;
+INSERT INTO `segment` VALUES (1,'SUV'),(2,'sedan'),(3,'hatchback'),(4,'crossover'),(5,'coupe'),(6,'pick-up'),(7,'descapotable'),(8,'van');
+/*!40000 ALTER TABLE `segment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `version`
+--
+
+DROP TABLE IF EXISTS `version`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `version` (
+  `version_id` int NOT NULL AUTO_INCREMENT,
+  `model_id` int DEFAULT NULL,
+  `version_name` varchar(80) DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  `year` year DEFAULT '2022',
+  `power_hp` int DEFAULT '0',
+  `torque` int DEFAULT '0',
+  `traction` varchar(70) DEFAULT '4x2',
+  `automatic` tinyint(1) DEFAULT '1',
+  `good_capacity` tinyint DEFAULT '5',
+  `autonomy` tinyint DEFAULT '3',
+  `low_gas_use` tinyint DEFAULT '5',
+  `screen` tinyint(1) DEFAULT '0',
+  `fiability` tinyint DEFAULT '5',
+  `interior_space` varchar(70) DEFAULT NULL,
+  `spacious` tinyint DEFAULT '5',
+  `interiors` varchar(60) DEFAULT 'TELA',
+  `secure` tinyint DEFAULT '5',
+  `passengers` int DEFAULT '4',
+  `is_comfortable` tinyint DEFAULT '5',
+  `sunroof` tinyint(1) DEFAULT '0',
+  `is_functional` tinyint DEFAULT '5',
+  `stetic` tinyint DEFAULT '5',
+  `attractive` tinyint DEFAULT '5',
+  `rims` varchar(70) DEFAULT 'genericos con copa',
+  `color_hexa` varchar(50) DEFAULT 'FFFFFF',
+  UNIQUE KEY `version_id` (`version_id`),
+  KEY `model_id` (`model_id`),
+  CONSTRAINT `version_ibfk_1` FOREIGN KEY (`model_id`) REFERENCES `model` (`model_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `version`
+--
+
+LOCK TABLES `version` WRITE;
+/*!40000 ALTER TABLE `version` DISABLE KEYS */;
+INSERT INTO `version` VALUES (1,1,'TR5L-8 Gasolina',NULL,2022,163,245,'AWD',1,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,1,'GT5L-8 Diesel',NULL,2022,201,500,'AWD',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `version` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-09-28 17:02:53
